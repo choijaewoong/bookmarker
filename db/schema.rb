@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170810163118) do
+ActiveRecord::Schema.define(version: 20170814180324) do
+
+  create_table "bookmarks", force: :cascade do |t|
+    t.integer  "category_id"
+    t.string   "title",       default: ""
+    t.string   "link",        default: "#"
+    t.string   "img_url",     default: ""
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+  end
 
   create_table "bookmkfolders", force: :cascade do |t|
     t.string   "bookmkfoldertitle"
@@ -23,6 +32,14 @@ ActiveRecord::Schema.define(version: 20170810163118) do
     t.index ["bookmkid_id"], name: "index_bookmkfolders_on_bookmkid_id"
     t.index ["email_id"], name: "index_bookmkfolders_on_email_id"
     t.index ["user_id"], name: "index_bookmkfolders_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.integer  "user_id"
+    t.text     "color"
+    t.text     "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "posts", force: :cascade do |t|

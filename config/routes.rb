@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
-  root 'bookmkfolders#index'
+  root 'bookmark#index'
   resources :bookmkfolders
   # resources :posts
   # post "bookmkfolder/newfolder" => "bookmkfolder#newfolder"
 
-  post "bookmkfolders/createfolder" => "bookmkfolders#createfolder"
+  # post "bookmkfolders/createfolder" => "bookmkfolders#createfolder"
+
+  post "category/add"  => "category#addCategory"
+  post "category/modify" => "category#modifyCategory"
+
+  post "bookmark/add"  => "bookmark#addBookmark"
+
   devise_for :users, controllers: {registrations: 'admin/registrations', :omniauth_callbacks => "admin/omniauth_callbacks"}
+
+
   # :controllers => { :sessions => "admin/sessions"}
   # devise_scope :user do
   #   get '/', to: 'welcome#login'
